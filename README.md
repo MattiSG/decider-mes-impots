@@ -32,7 +32,7 @@ Moyens
 Contraintes
 -----------
 
-- La déduction fiscale se fait dans la limite de 20% du revenu imposable. Néanmoins, pour que l'impôt sur le revenu atteigne 20% du revenu imposable, il faut avoir gagné plus de 70k€ imposables annuels. La grande majorité des contribuables peut donc déterminer la destination de l'intégralité de son impôt sur le revenu.
+- La déduction fiscale se fait dans la limite de 20% du revenu imposable. Néanmoins, pour que l'impôt sur le revenu atteigne 20% du revenu imposable, il faut avoir gagné plus de 56 446 € imposables annuels par part. La grande majorité des contribuables peut donc déterminer la destination de l'intégralité de son impôt sur le revenu.
 - Catégoriser la répartition du budget d'une association est long et coûteux. Le crowdsourcing semble la seule manière viable de compléter ces répartitions de manière fine. Il faudra donc déterminer un processus de complétion et de contrôle qui passe à l'échelle.
 
 
