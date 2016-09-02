@@ -32,8 +32,16 @@ Moyens
 Contraintes
 -----------
 
-- La déduction fiscale se fait dans la limite de 20% du revenu imposable. Néanmoins, pour que l'impôt sur le revenu atteigne 20% du revenu imposable, il faut avoir gagné plus de 56 446 € imposables annuels par part. La grande majorité des contribuables peut donc déterminer la destination de l'intégralité de son impôt sur le revenu.
 - Catégoriser la répartition du budget d'une association est long et coûteux. Le crowdsourcing semble la seule manière viable de compléter ces répartitions de manière fine. Il faudra donc déterminer un processus de complétion et de contrôle qui passe à l'échelle.
+- La déduction fiscale se fait dans la limite de 20 % du revenu imposable. Néanmoins, pour que l'impôt sur le revenu atteigne 20 % du revenu imposable, il faut avoir gagné plus de 56 446 € imposables annuels par part. La grande majorité des contribuables (au moins 78 %) peut donc déterminer la destination de l'intégralité de son impôt sur le revenu.
+
+> Source des 56 446 € / part : calcul fait dans `computeTax.js` en calculant l'impôt selon le [barème](http://www.impots.gouv.fr/portal/dgi/public/popup?espId=0&typePage=cpr02&docOid=documentstandard_6117) en itérant euro par euro.
+>
+> Source des 81 % : [statistiques nationales 2015 de la DGFiP](http://www2.impots.gouv.fr/documentation/statistiques/ircom2015/ir2015.htm).
+> Nombre de foyers fiscaux imposés dont le RFR est inférieur à 50k€ : 13 257 825.
+> Nombre de foyers fiscaux imposés dont le RFR est supérieur à 50k€ : 3 767 066.
+> Le net imposable est [par définition](http://www2.impots.gouv.fr/documentation/statistiques/ircom2015/notice_explicative.pdf) inférieur ou égal au RFR, et le foyer fiscal ne peut avoir moins d'une tranche. Il est donc certain que tous les foyers fiscaux de RFR ≤ 50k€ sont imposés à moins de 20 % du revenu imposable. Il est également fort probable que la majorité des foyers de RFR ≥ 50k€ soient eux-mêmes imposés à moins de 20 % du revenu imposable, mais on ne peut pas en être certain.
+> On fait donc le ratio (foyers de RFR ≤ 50k€) / (nombre total de foyers) = 13 257 825 / 17 024 891 = 77,87%.
 
 
 Licence
