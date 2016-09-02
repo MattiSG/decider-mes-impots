@@ -18,6 +18,8 @@ Objectifs secondaires
 
 - Rééquilibrer la puissance médiatique en renforçant la capacité de financement des partis politiques peu médiatisés.
 - Renforcer la capacité d'action des associations à but non lucratif.
+- Démontrer (ou pas) que les citoyen·ne·s sont prêts à contribuer à l'action publique, même si cela leur coûte plus cher, à partir du moment où on les rend directement partie prenante du processus.
+- Outiller les politiques défendant une participation accrue des citoyen·ne·s.
 
 
 Moyens
