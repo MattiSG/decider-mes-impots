@@ -25,7 +25,7 @@ Objectifs secondaires
 Moyens
 ------
 
-- Exploiter la déduction fiscale applicable aux dons aux associations à but non lucratif : une partie des dons est déduite du montant à payer. Cela signifie que tout contribuable peut décider de privilégier le type d'actions menées par une association par rapport à sa contribution au budget des politiques publiques sur lesquelles son seul moyen d'action est le vote sur le Projet de Loi de Finances par le biais de la représentation parlementaire.
+- Exploiter la [déduction fiscale](https://www.service-public.fr/particuliers/vosdroits/F426) ([article 200](https://www.legifrance.gouv.fr/affichCode.do?idSectionTA=LEGISCTA000006191957&cidTexte=LEGITEXT000006069577) du code général des impôts) applicable aux dons aux associations à but non lucratif : une partie des dons est déduite du montant à payer. Cela signifie que tout contribuable peut décider de privilégier le type d'actions menées par une association par rapport à sa contribution au budget des politiques publiques sur lesquelles son seul moyen d'action est le vote sur le [Projet de Loi de Finances](https://fr.wikipedia.org/wiki/Loi_de_finances_en_France) par le biais de la représentation parlementaire.
 - Rendre lisible la répartition du budget de l'État, catégoriser les associations selon la même répartition, et proposer un mix de dons permettant à l'utilisateur de concrétiser sa répartition idéale d'impôts.
 
 
