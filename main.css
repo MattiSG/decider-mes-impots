@@ -1,0 +1,42 @@
+html {
+	padding: 0;
+}
+
+body {
+	font-family: OpenSans, 'Helvetica Neue';
+	margin: 0;
+	margin-bottom: 6em;
+}
+
+header {
+	background: black;
+	color: white;
+	padding: 5em;
+}
+
+main, section {
+	max-width: 60em;
+	margin: auto;
+}
+
+h1, h2 {
+	text-align: center;
+}
+
+table {
+	margin: auto;
+	text-align: right;
+}
+
+caption {
+	opacity: .4;
+}
+
+table:hover caption {
+	opacity: 1;
+}
+
+th {
+	font-weight: normal;
+	padding-right: 2em;
+}
