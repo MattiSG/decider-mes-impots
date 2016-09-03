@@ -37,7 +37,8 @@ var chart = c3.generate({
             return [ name, data[name] ];
         }),
         type: 'bar',
-        groups: [ Object.keys(data) ]
+        groups: [ Object.keys(data) ],
+        order: 'asc'
     },
     axis: {
         rotated: true,
