@@ -1,4 +1,4 @@
-var data = [ {
+var data = {
     "Action extérieure de l’État": 1.38,
     "Administration générale et territoriale de l’État": 0.88,
     "Agriculture, alimentation, forêt et affaires rurales": 1.13,
@@ -29,72 +29,35 @@ var data = [ {
     "Solidarité, insertion et égalité des chances": 8.16,
     "Sport, jeunesse et vie associative": 0.28,
     "Travail et emploi": 5.09
-} ];
+};
 
-var n = Object.keys(data[0]).length, // number of layers
-    m = data.length, // number of samples per layer
-    stack = d3.layout.stack(),
-    labels = [ "Budget de l'État" ],
-
-    //go through each layer (pop1, pop2 etc, that's the range(n) part)
-    //then go through each object in data and pull out that objects's population data
-    //and put it into an array where x is the index and y is the number
-    layers = stack(d3.range(n).map(function(d) {
-                var a = [];
-                for (var key in data[0]) {
-                    a[0] = {x: 0, y: data[0][key]};
-                }
-                return a;
-             })),
-
-    //the largest single layer
-    yGroupMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y; }); }),
-    //the largest stack
-    yStackMax = d3.max(layers, function(layer) { return d3.max(layer, function(d) { return d.y0 + d.y; }); });
-
-var margin = {top: 40, right: 10, bottom: 20, left: 50},
-    width = 677 - margin.left - margin.right,
-    height = 533 - margin.top - margin.bottom;
-
-var y = d3.scale.ordinal()
-    .domain(d3.range(m))
-    .rangeRoundBands([2, height], .08);
-
-var x = d3.scale.linear()
-    .domain([0, yStackMax])
-    .range([0, width]);
-
-var color = d3.scale.linear()
-    .domain([0, n - 1])
-    .range(["#aad", "#556"]);
-
-var svg = d3.select("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-var layer = svg.selectAll(".layer")
-    .data(layers)
-  .enter().append("g")
-    .attr("class", "layer")
-    .style("fill", function(d, i) { return color(i); });
-
-layer.selectAll("rect")
-    .data(function(d) { return d; })
-    .enter().append("rect")
-    .attr("y", function(d) { return y(d.x); })
-    .attr("x", function(d) { return x(d.y0); })
-    .attr("height", y.rangeBand())
-    .attr("width", function(d) { return x(d.y); });
-
-var yAxis = d3.svg.axis()
-    .scale(y)
-    .tickSize(1)
-    .tickPadding(6)
-    .tickValues(labels)
-    .orient("left");
-
-svg.append("g")
-    .attr("class", "y axis")
-    .call(yAxis);
+var chart = c3.generate({
+    data: {
+        columns: Object.keys(data).map(function(name) {
+            return [ name, data[name] ];
+        }),
+        type: 'bar',
+        groups: [ Object.keys(data) ]
+    },
+    axis: {
+        rotated: true,
+        x: { show: false },
+        y: { show: false }
+    },
+    color: {
+        pattern: [ '#B0B3B1', '#EB7F2A', '#49A91F', '#295181', '#56D1F9', '#F9D836', '#E22C65', '#000000', '#FDF7F6', '#69F53B', '#AAB2FA', '#E86C69', '#CFC6C8', '#CE3CD4', '#FADC36', '#FFFFFF', '#EA7E42', '#FFFFFF', '#67FAFB', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#882188', '#39793A', '#CB2E34', '#FFFFFF', '#05106B', '#929DF9', '#E97782', '#FFFFFF' ]
+    },
+    tooltip: {
+        grouped: false,
+        format: {
+            value: function(value, ratio, id, index) {
+                return String(value).replace('.', ',') + ' %';
+            }
+        }
+    },
+    legend: {
+        item: {
+            onclick: function (id) { return false }  // do not allow hiding
+        }
+    }
+});
