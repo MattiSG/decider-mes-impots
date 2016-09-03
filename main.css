@@ -5,10 +5,9 @@ html {
 body {
 	font-family: OpenSans, 'Helvetica Neue';
 	margin: 0;
-	margin-bottom: 6em;
 }
 
-header {
+header, footer {
 	background: black;
 	color: white;
 	padding: 5em;
@@ -39,4 +38,16 @@ table:hover caption {
 th {
 	font-weight: normal;
 	padding-right: 2em;
+}
+
+
+footer {
+	margin-top: 2em;
+	font-size: 80%;
+	text-align: center;
+	color: #EEE;
+}
+
+footer a {
+	color: inherit;
 }
