@@ -1,3 +1,5 @@
+Chart.defaults.global.defaultFontSize = 16;
+
 new Chart(document.querySelector('canvas'), {
     type: 'doughnut',
     data: {
@@ -41,6 +43,23 @@ new Chart(document.querySelector('canvas'), {
         ]
     },
     options: {
-        legend: { position: 'bottom' }
+        legend: {
+            position: 'bottom',
+            onClick: function() { return false },
+            labels: {
+                boxWidth: Chart.defaults.global.defaultFontSize,
+                fontColor: '#030303'
+            },
+        },
+        tooltips: {
+            callbacks: {
+                title: function(tooltipItems, data) {
+                    return data.labels[tooltipItems[0].index];
+                },
+                label: function(tooltipItem, data) {
+                     return data.datasets[0].data[tooltipItem.index] + ' %';
+                }
+            }
+        }
     }
 });
