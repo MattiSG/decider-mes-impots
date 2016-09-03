@@ -1,5 +1,5 @@
 const assert = require('assert');
-const computeTax = require('../computeTax');
+const computeTax = require('../js/computeTax');
 
 
 assert.equal(computeTax(0), 0);
