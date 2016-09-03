@@ -1,5 +1,52 @@
 Chart.defaults.global.defaultFontSize = 16;
 
+Chart.pluginService.register({
+    beforeRender: function (chart) {
+        if (chart.config.options.tooltips.display == 'always') {
+            // create an array of tooltips
+            // we can't use the chart tooltip because there is only one tooltip per chart
+            chart.pluginTooltips = [];
+            chart.config.data.datasets.forEach(function (dataset, i) {
+                chart.getDatasetMeta(i).data.forEach(function (sector, j) {
+                    chart.pluginTooltips.push(new Chart.Tooltip({
+                        _chart: chart.chart,
+                        _chartInstance: chart,
+                        _data: chart.data,
+                        _options: chart.options.tooltips,
+                        _active: [sector]
+                    }, chart));
+                });
+            });
+
+            // turn off normal tooltips
+            chart.options.tooltips.enabled = false;
+        }
+    },
+
+    afterDraw: function (chart, easing) {
+        if (chart.config.options.tooltips.display == 'always') {
+            // we don't want the permanent tooltips to animate, so don't do anything till the animation runs at least once
+            if (! chart.allTooltipsOnce) {
+                if (easing !== 1)
+                    return;
+                chart.allTooltipsOnce = true;
+            }
+
+            // turn on tooltips
+            chart.options.tooltips.enabled = true;
+            Chart.helpers.each(chart.pluginTooltips, function (tooltip) {
+                tooltip.initialize();
+                tooltip.update();
+                // we don't actually need this since we are not animating tooltips
+                tooltip.pivot();
+                tooltip.transition(easing).draw();
+            });
+            chart.options.tooltips.enabled = false;
+        }
+    }
+})
+
+
 new Chart(document.querySelector('canvas'), {
     type: 'doughnut',
     data: {
@@ -43,23 +90,7 @@ new Chart(document.querySelector('canvas'), {
         ]
     },
     options: {
-        legend: {
-            position: 'bottom',
-            onClick: function() { return false },
-            labels: {
-                boxWidth: Chart.defaults.global.defaultFontSize,
-                fontColor: '#030303'
-            },
-        },
-        tooltips: {
-            callbacks: {
-                title: function(tooltipItems, data) {
-                    return data.labels[tooltipItems[0].index];
-                },
-                label: function(tooltipItem, data) {
-                     return data.datasets[0].data[tooltipItem.index] + ' %';
-                }
-            }
-        }
+        legend: { display: false },
+        tooltips: { display: 'always' }
     }
 });
