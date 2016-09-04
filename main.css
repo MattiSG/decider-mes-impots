@@ -51,3 +51,14 @@ footer {
 footer a {
 	color: inherit;
 }
+
+.tooltip {
+	border-style: solid;
+	border-width: .5em;
+	border-left-color: transparent;
+	border-bottom-color: transparent;
+	border-top-color: transparent;
+	border-right-width: 0;
+	padding: 0 .5em;
+	background-color: rgba(0, 0, 0, .1);
+}

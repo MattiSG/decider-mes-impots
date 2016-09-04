@@ -39,7 +39,12 @@ var chart = c3.generate({
         }),
         type: 'bar',
         groups: [ Object.keys(source) ],
-        order: 'asc'
+        order: 'asc',
+        labels: {
+            format: function (value) {
+                return value.toFixed(0) + ' %'
+            }
+        }
     },
     axis: {
         rotated: true,
@@ -54,7 +59,7 @@ var chart = c3.generate({
         position: function (data, tooltipWidth, tooltipHeight, segmentElement) {
             var segmentDimensions = segmentElement.getBoundingClientRect();
             return {
-                top: 0,
+                top: tooltipHeight + 16,
                 left: segmentDimensions.left - tooltipWidth
             };
         },
@@ -63,10 +68,7 @@ var chart = c3.generate({
                 value = String(data[0].value).replace('.', ',') + ' %',
                 color = colors[Object.keys(source).indexOf(data[0].id)];
 
-            return  '<dl style="color:' + color + '; border-top: 2px solid ' + color + '">' +
-                    '<dt>' + name + '</dt>' +
-                    '<dd>' + value + '</dd>' +
-                    '</dl>';
+            return  '<b class="tooltip" style="color:' + color + '; border-left-color: ' + color + ';">' + name + '</b>';
         }
     },
     legend: {
