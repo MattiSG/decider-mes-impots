@@ -1,4 +1,4 @@
-var data = {
+var source = {
     "Action extérieure de l’État": 1.38,
     "Administration générale et territoriale de l’État": 0.88,
     "Agriculture, alimentation, forêt et affaires rurales": 1.13,
@@ -29,15 +29,16 @@ var data = {
     "Solidarité, insertion et égalité des chances": 8.16,
     "Sport, jeunesse et vie associative": 0.28,
     "Travail et emploi": 5.09
-};
+},
+colors = [ '#B0B3B1', '#EB7F2A', '#49A91F', '#295181', '#56D1F9', '#F9D836', '#E22C65', '#000000', '#FDF7F6', '#69F53B', '#AAB2FA', '#E86C69', '#CFC6C8', '#CE3CD4', '#FADC36', '#FFFFFF', '#EA7E42', '#FFFFFF', '#67FAFB', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#882188', '#39793A', '#CB2E34', '#FFFFFF', '#05106B', '#929DF9', '#E97782', '#FFFFFF' ];
 
 var chart = c3.generate({
     data: {
-        columns: Object.keys(data).map(function(name) {
-            return [ name, data[name] ];
+        columns: Object.keys(source).map(function(name) {
+            return [ name, source[name] ];
         }),
         type: 'bar',
-        groups: [ Object.keys(data) ],
+        groups: [ Object.keys(source) ],
         order: 'asc'
     },
     axis: {
@@ -46,19 +47,29 @@ var chart = c3.generate({
         y: { show: false }
     },
     color: {
-        pattern: [ '#B0B3B1', '#EB7F2A', '#49A91F', '#295181', '#56D1F9', '#F9D836', '#E22C65', '#000000', '#FDF7F6', '#69F53B', '#AAB2FA', '#E86C69', '#CFC6C8', '#CE3CD4', '#FADC36', '#FFFFFF', '#EA7E42', '#FFFFFF', '#67FAFB', '#FFFFFF', '#FFFFFF', '#FFFFFF', '#882188', '#39793A', '#CB2E34', '#FFFFFF', '#05106B', '#929DF9', '#E97782', '#FFFFFF' ]
+        pattern: colors
     },
     tooltip: {
         grouped: false,
-        format: {
-            value: function(value, ratio, id, index) {
-                return String(value).replace('.', ',') + ' %';
-            }
+        position: function (data, tooltipWidth, tooltipHeight, segmentElement) {
+            var segmentDimensions = segmentElement.getBoundingClientRect();
+            return {
+                top: 0,
+                left: segmentDimensions.left - tooltipWidth
+            };
+        },
+        contents: function (data) {
+            var name  = data[0].id,
+                value = String(data[0].value).replace('.', ',') + ' %',
+                color = colors[Object.keys(source).indexOf(data[0].id)];
+
+            return  '<dl style="color:' + color + '; border-top: 2px solid ' + color + '">' +
+                    '<dt>' + name + '</dt>' +
+                    '<dd>' + value + '</dd>' +
+                    '</dl>';
         }
     },
     legend: {
-        item: {
-            onclick: function (id) { return false }  // do not allow hiding
-        }
+        show: false
     }
 });
